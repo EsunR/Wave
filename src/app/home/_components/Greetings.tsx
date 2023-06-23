@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 function getTimeGreeting() {
   const hour = new Date().getHours();
   if (hour >= 0 && hour < 6) {
@@ -21,3 +23,5 @@ export default function Greetings() {
     </div>
   );
 }
+
+export const GreetingsMemo = memo(Greetings);
