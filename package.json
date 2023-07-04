@@ -1,7 +1,9 @@
 {
   "name": "wave-sound",
-  "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -28,5 +30,8 @@
   },
   "devDependencies": {
     "sass": "^1.63.6"
+  },
+  "volta": {
+    "node": "18.16.1"
   }
 }
