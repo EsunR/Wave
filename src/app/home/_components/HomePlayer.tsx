@@ -89,10 +89,16 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
       });
     }, [mediaMetaData, audioDomRef, img]);
 
+    /**
+     * 改变播放状态，仅处理播放和未播放状态，其他状态不处理
+     */
     const changePlayStatus = useCallback(
-      async (audioStatus: "play" | "pause") => {
+      async (targetStatus: "playing" | "pause") => {
+        if (audioStatus === "disable" || audioStatus === "loading") {
+          return;
+        }
         if (audioDomRef.current) {
-          if (audioStatus === "play") {
+          if (targetStatus === "playing") {
             try {
               await audioDomRef.current.play();
               setMediaSession();
@@ -110,7 +116,7 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
           }
         }
       },
-      [setMediaSession, audioDomRef]
+      [setMediaSession, audioDomRef, audioStatus]
     );
 
     function onPlayerClick() {
@@ -118,7 +124,7 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
         if (audioStatus === "playing") {
           changePlayStatus("pause");
         } else {
-          changePlayStatus("play");
+          changePlayStatus("playing");
         }
       }
     }
@@ -127,7 +133,7 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
       ref,
       () => ({
         play: () => {
-          changePlayStatus("play");
+          changePlayStatus("playing");
         },
         pause: () => {
           changePlayStatus("pause");
