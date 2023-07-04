@@ -57,10 +57,10 @@
     "is_dolby": false,
     "video_cover_url": "",
     "video_cover_demo_url": "",
-    "image": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5a7702adfbcf3900067aabff/image.jpg",
+    "image": "https://wave-app.cdn.bcebos.com/scenes/5a7702adfbcf3900067aabff/image.jpg",
     "scene_id": "5a7702adfbcf3900067aabff",
     "resource_hash": "lib25q7C2W6bfza44LqguI5EnELi",
-    "resource_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5a7702adfbcf3900067aabff/sound.mp3",
+    "resource_download_url": "https://wave-app.cdn.bcebos.com/scenes/5a7702adfbcf3900067aabff/sound.mp3",
     "resource_audio_type": "stereo",
     "video_cover_hash_key": "",
     "video_cover_download_url": ""
@@ -133,15 +133,15 @@
     ],
     "primary_color": "240,159,154,1",
     "is_dolby": false,
-    "video_cover_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5ea7ff080357020008374090/video_cover.jpg",
-    "video_cover_demo_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5ea7ff080357020008374090/video.mp4",
-    "image": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5ea7ff080357020008374090/image.jpg",
+    "video_cover_url": "https://wave-app.cdn.bcebos.com/scenes/5ea7ff080357020008374090/video_cover.jpg",
+    "video_cover_demo_url": "https://wave-app.cdn.bcebos.com/scenes/5ea7ff080357020008374090/video.mp4",
+    "image": "https://wave-app.cdn.bcebos.com/scenes/5ea7ff080357020008374090/image.jpg",
     "scene_id": "5ea7ff080357020008374090",
     "resource_hash": "lhzQXUEAeKtdFoWvo1GCzgM7sfdp",
-    "resource_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5ea7ff080357020008374090/sound.mp3",
+    "resource_download_url": "https://wave-app.cdn.bcebos.com/scenes/5ea7ff080357020008374090/sound.mp3",
     "resource_audio_type": "stereo",
     "video_cover_hash_key": "sounds/lukX5pZj0S4rSaQeToCh4wI4s5jJ",
-    "video_cover_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5ea7ff080357020008374090/video.mp4"
+    "video_cover_download_url": "https://wave-app.cdn.bcebos.com/scenes/5ea7ff080357020008374090/video.mp4"
   },
   {
     "name": {
@@ -201,10 +201,10 @@
     "is_dolby": false,
     "video_cover_url": "",
     "video_cover_demo_url": "",
-    "image": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5bd97e218a65a50005062455/image.jpg",
+    "image": "https://wave-app.cdn.bcebos.com/scenes/5bd97e218a65a50005062455/image.jpg",
     "scene_id": "5bd97e218a65a50005062455",
     "resource_hash": "lrm-2P7Jgu7imYP4qDXjqPruEKSA",
-    "resource_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5bd97e218a65a50005062455/sound.mp3",
+    "resource_download_url": "https://wave-app.cdn.bcebos.com/scenes/5bd97e218a65a50005062455/sound.mp3",
     "resource_audio_type": "stereo",
     "video_cover_hash_key": "",
     "video_cover_download_url": ""
@@ -277,15 +277,15 @@
     ],
     "primary_color": "93,160,174,1",
     "is_dolby": false,
-    "video_cover_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5e54abfcc496e0000669d2c9/video_cover.jpg",
-    "video_cover_demo_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5e54abfcc496e0000669d2c9/video.mp4",
-    "image": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5e54abfcc496e0000669d2c9/image.jpg",
+    "video_cover_url": "https://wave-app.cdn.bcebos.com/scenes/5e54abfcc496e0000669d2c9/video_cover.jpg",
+    "video_cover_demo_url": "https://wave-app.cdn.bcebos.com/scenes/5e54abfcc496e0000669d2c9/video.mp4",
+    "image": "https://wave-app.cdn.bcebos.com/scenes/5e54abfcc496e0000669d2c9/image.jpg",
     "scene_id": "5e54abfcc496e0000669d2c9",
     "resource_hash": "lqVsojtUa0PGHanLKJwjWHMPyhP3",
-    "resource_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5e54abfcc496e0000669d2c9/sound.mp3",
+    "resource_download_url": "https://wave-app.cdn.bcebos.com/scenes/5e54abfcc496e0000669d2c9/sound.mp3",
     "resource_audio_type": "stereo",
     "video_cover_hash_key": "sounds/lvDVU9NMXgW_nxE-dHVpyxgOr3_d",
-    "video_cover_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5e54abfcc496e0000669d2c9/video.mp4"
+    "video_cover_download_url": "https://wave-app.cdn.bcebos.com/scenes/5e54abfcc496e0000669d2c9/video.mp4"
   },
   {
     "name": {
@@ -331,15 +331,15 @@
     ],
     "primary_color": "34,22,20,1",
     "is_dolby": false,
-    "video_cover_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5a560d113ea0bf00086a36a8/video_cover.jpg",
-    "video_cover_demo_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5a560d113ea0bf00086a36a8/video.mp4",
-    "image": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5a560d113ea0bf00086a36a8/image.jpg",
+    "video_cover_url": "https://wave-app.cdn.bcebos.com/scenes/5a560d113ea0bf00086a36a8/video_cover.jpg",
+    "video_cover_demo_url": "https://wave-app.cdn.bcebos.com/scenes/5a560d113ea0bf00086a36a8/video.mp4",
+    "image": "https://wave-app.cdn.bcebos.com/scenes/5a560d113ea0bf00086a36a8/image.jpg",
     "scene_id": "5a560d113ea0bf00086a36a8",
     "resource_hash": "luadFKfSat4vp63vyZ_1zlC-8rnS",
-    "resource_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5a560d113ea0bf00086a36a8/sound.mp3",
+    "resource_download_url": "https://wave-app.cdn.bcebos.com/scenes/5a560d113ea0bf00086a36a8/sound.mp3",
     "resource_audio_type": "stereo",
     "video_cover_hash_key": "sounds/loYXHbXsjvGw0lxZsZzz2S46IGjJ",
-    "video_cover_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/5a560d113ea0bf00086a36a8/video.mp4"
+    "video_cover_download_url": "https://wave-app.cdn.bcebos.com/scenes/5a560d113ea0bf00086a36a8/video.mp4"
   },
   {
     "name": {
@@ -423,10 +423,10 @@
     "is_dolby": false,
     "video_cover_url": "",
     "video_cover_demo_url": "",
-    "image": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/636b2ef11ac8f7000192213a/image.jpg",
+    "image": "https://wave-app.cdn.bcebos.com/scenes/636b2ef11ac8f7000192213a/image.jpg",
     "scene_id": "636b2ef11ac8f7000192213a",
     "resource_hash": "lnw8XdjqdQrkdeW2xKPr2Oq5l8jl",
-    "resource_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/636b2ef11ac8f7000192213a/sound.mp3",
+    "resource_download_url": "https://wave-app.cdn.bcebos.com/scenes/636b2ef11ac8f7000192213a/sound.mp3",
     "resource_audio_type": "stereo",
     "video_cover_hash_key": "",
     "video_cover_download_url": ""
@@ -525,10 +525,10 @@
     "is_dolby": false,
     "video_cover_url": "",
     "video_cover_demo_url": "",
-    "image": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/63dccba61071d700010dcc30/image.jpg",
+    "image": "https://wave-app.cdn.bcebos.com/scenes/63dccba61071d700010dcc30/image.jpg",
     "scene_id": "63dccba61071d700010dcc30",
     "resource_hash": "loSKbB9wGuWsYfKFK6cp2smp894B",
-    "resource_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/63dccba61071d700010dcc30/sound.mp3",
+    "resource_download_url": "https://wave-app.cdn.bcebos.com/scenes/63dccba61071d700010dcc30/sound.mp3",
     "resource_audio_type": "stereo",
     "video_cover_hash_key": "",
     "video_cover_download_url": ""
@@ -611,10 +611,10 @@
     "is_dolby": true,
     "video_cover_url": "",
     "video_cover_demo_url": "",
-    "image": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/64073fcd8f67ef0001c6a8d9/image.jpg",
+    "image": "https://wave-app.cdn.bcebos.com/scenes/64073fcd8f67ef0001c6a8d9/image.jpg",
     "scene_id": "64073fcd8f67ef0001c6a8d9",
     "resource_hash": "lqJHZByJtvwlD2zrP47-hMCthGTI",
-    "resource_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/64073fcd8f67ef0001c6a8d9/sound.mp3",
+    "resource_download_url": "https://wave-app.cdn.bcebos.com/scenes/64073fcd8f67ef0001c6a8d9/sound.mp3",
     "resource_audio_type": "dolby",
     "video_cover_hash_key": "",
     "video_cover_download_url": ""
@@ -699,15 +699,15 @@
     ],
     "primary_color": "41,78,83,1",
     "is_dolby": true,
-    "video_cover_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/64102997fef71b00015b2590/video_cover.jpg",
-    "video_cover_demo_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/64102997fef71b00015b2590/video.mp4",
-    "image": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/64102997fef71b00015b2590/image.jpg",
+    "video_cover_url": "https://wave-app.cdn.bcebos.com/scenes/64102997fef71b00015b2590/video_cover.jpg",
+    "video_cover_demo_url": "https://wave-app.cdn.bcebos.com/scenes/64102997fef71b00015b2590/video.mp4",
+    "image": "https://wave-app.cdn.bcebos.com/scenes/64102997fef71b00015b2590/image.jpg",
     "scene_id": "64102997fef71b00015b2590",
     "resource_hash": "lu2d7m6fKV2qbrNsTiU7ca6cgVHR",
-    "resource_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/64102997fef71b00015b2590/sound.mp3",
+    "resource_download_url": "https://wave-app.cdn.bcebos.com/scenes/64102997fef71b00015b2590/sound.mp3",
     "resource_audio_type": "dolby",
     "video_cover_hash_key": "scenes/loA21Ejmf_NP1q2DcPPj3DPM1dAY",
-    "video_cover_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/64102997fef71b00015b2590/video.mp4"
+    "video_cover_download_url": "https://wave-app.cdn.bcebos.com/scenes/64102997fef71b00015b2590/video.mp4"
   },
   {
     "name": {
@@ -789,15 +789,15 @@
     ],
     "primary_color": "15,35,46,1",
     "is_dolby": true,
-    "video_cover_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/643671e5f46fd000016d47ee/video_cover.jpg",
-    "video_cover_demo_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/643671e5f46fd000016d47ee/video.mp4",
-    "image": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/643671e5f46fd000016d47ee/image.jpg",
+    "video_cover_url": "https://wave-app.cdn.bcebos.com/scenes/643671e5f46fd000016d47ee/video_cover.jpg",
+    "video_cover_demo_url": "https://wave-app.cdn.bcebos.com/scenes/643671e5f46fd000016d47ee/video.mp4",
+    "image": "https://wave-app.cdn.bcebos.com/scenes/643671e5f46fd000016d47ee/image.jpg",
     "scene_id": "643671e5f46fd000016d47ee",
     "resource_hash": "lhKivmqRh6i_27L_fabk6MoxoNcU",
-    "resource_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/643671e5f46fd000016d47ee/sound.mp3",
+    "resource_download_url": "https://wave-app.cdn.bcebos.com/scenes/643671e5f46fd000016d47ee/sound.mp3",
     "resource_audio_type": "dolby",
     "video_cover_hash_key": "scenes/ljVA2kvmPny6xFuQ_g2zauBmlESw",
-    "video_cover_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/643671e5f46fd000016d47ee/video.mp4"
+    "video_cover_download_url": "https://wave-app.cdn.bcebos.com/scenes/643671e5f46fd000016d47ee/video.mp4"
   },
   {
     "name": {
@@ -879,14 +879,14 @@
     ],
     "primary_color": "78,67,55,1",
     "is_dolby": true,
-    "video_cover_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/6448e5cb3ee12200019ec838/video_cover.jpg",
-    "video_cover_demo_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/6448e5cb3ee12200019ec838/video.mp4",
-    "image": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/6448e5cb3ee12200019ec838/image.jpg",
+    "video_cover_url": "https://wave-app.cdn.bcebos.com/scenes/6448e5cb3ee12200019ec838/video_cover.jpg",
+    "video_cover_demo_url": "https://wave-app.cdn.bcebos.com/scenes/6448e5cb3ee12200019ec838/video.mp4",
+    "image": "https://wave-app.cdn.bcebos.com/scenes/6448e5cb3ee12200019ec838/image.jpg",
     "scene_id": "6448e5cb3ee12200019ec838",
     "resource_hash": "lj_6ZsKR4VcUdus921p4I66AGhdo",
-    "resource_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/6448e5cb3ee12200019ec838/sound.mp3",
+    "resource_download_url": "https://wave-app.cdn.bcebos.com/scenes/6448e5cb3ee12200019ec838/sound.mp3",
     "resource_audio_type": "dolby",
     "video_cover_hash_key": "scenes/ljUiPd6vKL_EV6aETLeDbJZWvNmw",
-    "video_cover_download_url": "https://webapp-wave.s3.ap-east-1.amazonaws.com/scenes/6448e5cb3ee12200019ec838/video.mp4"
+    "video_cover_download_url": "https://wave-app.cdn.bcebos.com/scenes/6448e5cb3ee12200019ec838/video.mp4"
   }
 ]
