@@ -12,6 +12,8 @@ import {
 import { BsFillPlayFill } from "react-icons/bs";
 import { VscRunErrors } from "react-icons/vsc";
 import { CgDolby } from "react-icons/cg";
+import { MdOutlineDownloading } from "react-icons/md";
+import { bosImage } from "@/utils/image";
 
 export interface HomePlayerProps extends React.HTMLAttributes<HTMLDivElement> {
   img: string;
@@ -24,12 +26,16 @@ export interface HomePlayerProps extends React.HTMLAttributes<HTMLDivElement> {
     album: string;
   };
   isDolby?: boolean;
+  onAudioStartPlay?: () => void;
 }
+
+type AudioStatus = "loading" | "playing" | "pause" | "disable";
 
 export interface HomePlayerRef {
   play: () => void;
   pause: () => void;
   reset: () => void;
+  audioStatus: AudioStatus;
 }
 
 const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
@@ -41,24 +47,22 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
       sound,
       mediaMetaData,
       isDolby,
+      onAudioStartPlay,
       ...htmlAttributes
     },
     ref
   ) => {
     const audioDomRef = useRef<HTMLAudioElement>(null);
-    const [soundLoaded, setSoundLoaded] = useState(false);
-    const [soundLoadError, setSoundLoadError] = useState(false);
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [audioStatus, setAudioStatus] = useState<AudioStatus>("loading");
 
     useEffect(() => {
       if (audioDomRef.current) {
         audioDomRef.current.addEventListener("loadeddata", () => {
-          setSoundLoaded(true);
+          setAudioStatus("pause");
         });
         // 加载错误
-        audioDomRef.current.addEventListener("error", (e) => {
-          setSoundLoadError(true);
-          setSoundLoaded(false);
+        audioDomRef.current.addEventListener("error", () => {
+          setAudioStatus("disable");
         });
       }
     }, [audioDomRef]);
@@ -69,46 +73,49 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
         artist: mediaMetaData.artist,
         album: mediaMetaData.album,
         // 封面太大可能会导致 iOS 页面卡死
-        // artwork: [
-        //   {
-        //     src: img,
-        //   },
-        // ],
+        artwork: [
+          {
+            src: bosImage(img, { resize: { m: "fill", w: 200, h: 200 } }),
+          },
+        ],
       });
       navigator.mediaSession.setActionHandler("play", function () {
         audioDomRef.current?.play();
-        setIsPlaying(true);
+        setAudioStatus("playing");
       });
       navigator.mediaSession.setActionHandler("pause", function () {
         audioDomRef.current?.pause();
-        setIsPlaying(false);
+        setAudioStatus("pause");
       });
-    }, [mediaMetaData, audioDomRef]);
+    }, [mediaMetaData, audioDomRef, img]);
 
-    const changePlayStatus = async (playStatus: "play" | "pause") => {
-      if (audioDomRef.current) {
-        if (playStatus === "play") {
-          try {
-            await audioDomRef.current.play();
-            setMediaSession();
-            setIsPlaying(true);
-          } catch (e) {
-            console.log(e);
-          }
-        } else {
-          try {
-            audioDomRef.current.pause();
-            setIsPlaying(false);
-          } catch (e) {
-            console.log(e);
+    const changePlayStatus = useCallback(
+      async (audioStatus: "play" | "pause") => {
+        if (audioDomRef.current) {
+          if (audioStatus === "play") {
+            try {
+              await audioDomRef.current.play();
+              setMediaSession();
+              setAudioStatus("playing");
+            } catch (e) {
+              console.log(e);
+            }
+          } else {
+            try {
+              audioDomRef.current.pause();
+              setAudioStatus("pause");
+            } catch (e) {
+              console.log(e);
+            }
           }
         }
-      }
-    };
+      },
+      [setMediaSession, audioDomRef]
+    );
 
     function onPlayerClick() {
       if (audioDomRef.current) {
-        if (isPlaying) {
+        if (audioStatus === "playing") {
           changePlayStatus("pause");
         } else {
           changePlayStatus("play");
@@ -131,9 +138,16 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
             (audioDomRef.current as any).currentTime = 0;
           }
         },
+        audioStatus,
       }),
-      [soundLoaded]
+      [audioStatus, changePlayStatus]
     );
+
+    useEffect(() => {
+      if (audioStatus === "playing" && typeof onAudioStartPlay === "function") {
+        onAudioStartPlay();
+      }
+    }, [audioStatus, onAudioStartPlay]);
 
     return (
       <div
@@ -149,7 +163,7 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
           <video
             className="absolute -z-10 w-full h-full object-cover"
             src={video}
-            poster={videoCover}
+            poster={videoCover && bosImage(videoCover, { resize: { h: 896 } })}
             autoPlay
             loop
             muted
@@ -158,32 +172,43 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
         ) : (
           <img
             className="absolute -z-10 w-full h-full object-cover"
-            src={img}
+            src={bosImage(img, { resize: { h: 896 } })}
             alt="background"
           />
         )}
 
         <div
           className={clsx([
-            "w-full h-full flex flex-col items-center justify-center pb-[--bottom-nav-height] relative",
+            "w-full h-full flex flex-col items-center justify-center pb-[--bottom-nav-height] relative select-none",
           ])}
         >
           {/* play icon */}
-          <div className={clsx(["opacity-30", isPlaying ? "hidden" : ""])}>
-            {!soundLoadError ? (
-              <BsFillPlayFill size={80} color="#FFF" />
-            ) : (
+          <div
+            className={clsx([
+              "opacity-30",
+              audioStatus === "playing" ? "hidden" : "",
+            ])}
+          >
+            {audioStatus === "loading" ? (
+              <MdOutlineDownloading
+                size={60}
+                color="#FFF"
+                className="animate-bounce"
+              />
+            ) : audioStatus === "disable" ? (
               <div className="flex flex-col items-center">
                 <VscRunErrors size={60} color="#FFF" className="mb-2" />
                 <span className="text-white">浏览器不支持当前音频</span>
               </div>
+            ) : (
+              <BsFillPlayFill size={80} color="#FFF" />
             )}
           </div>
           {/* title */}
           <div
             className={clsx([
               "text-white text-3xl tracking-[0.75rem] transition-all duration-500 ease-in-out absolute font-extralight",
-              isPlaying ? "opacity-70" : "opacity-0",
+              audioStatus === "playing" ? "opacity-70" : "hidden",
             ])}
             style={{ writingMode: "vertical-lr" }}
           >

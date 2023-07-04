@@ -1,12 +1,6 @@
 "use client";
 import clsx from "clsx";
-import {
-  forwardRef,
-  memo,
-  useImperativeHandle,
-  useRef,
-  useState
-} from "react";
+import { forwardRef, memo, useImperativeHandle, useRef, useState } from "react";
 import { Swiper, SwiperProps, SwiperSlide } from "swiper/react";
 import { HomePlayerMemo, HomePlayerRef } from "./HomePlayer";
 
@@ -21,9 +15,6 @@ const SlidePlayer = forwardRef<any, SlidePlayerProps>(
     const [isSliding, setIsSliding] = useState(false);
 
     const onSlideChange: SwiperProps["onSlideChange"] = (swiper) => {
-      homePlayerRefs.current.forEach((player) => {
-        player.reset();
-      });
       if (onSlideChangeFromProps) {
         onSlideChangeFromProps(swiper);
       }
@@ -34,9 +25,17 @@ const SlidePlayer = forwardRef<any, SlidePlayerProps>(
       const currentX = swiper.touches.currentX;
       const startX = swiper.touches.startX;
       const diffX = Math.round(Math.abs(currentX - startX));
-      if(diffX){
+      if (diffX) {
         setIsSliding(true);
       }
+    };
+
+    const onAudioStartPlay = (audioIndex: number) => {
+      homePlayerRefs.current.forEach((homePlayerRef, index) => {
+        if (index !== audioIndex) {
+          homePlayerRef.reset();
+        }
+      });
     };
 
     useImperativeHandle(ref, () => ({}));
@@ -55,9 +54,7 @@ const SlidePlayer = forwardRef<any, SlidePlayerProps>(
         {homeSoundList.map((sound, index) => (
           <SwiperSlide key={sound.scene_id}>
             <HomePlayerMemo
-              className={clsx(
-                "transition-all duration-150 ease-in",
-              )}
+              className={clsx("transition-all duration-150 ease-in")}
               style={{
                 scale: isSliding ? 0.95 : 1,
                 borderRadius: isSliding ? "2rem" : "initial",
@@ -78,6 +75,7 @@ const SlidePlayer = forwardRef<any, SlidePlayerProps>(
                 album: "Wave Sounds",
               }}
               isDolby={sound.is_dolby}
+              onAudioStartPlay={() => onAudioStartPlay(index)}
             />
           </SwiperSlide>
         ))}
