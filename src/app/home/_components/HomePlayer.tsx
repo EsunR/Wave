@@ -57,9 +57,9 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
 
     useEffect(() => {
       if (audioDomRef.current) {
-        audioDomRef.current.addEventListener("loadeddata", () => {
+        audioDomRef.current.addEventListener('loadedmetadata', ()=>{
           setAudioStatus("pause");
-        });
+        })
         // 加载错误
         audioDomRef.current.addEventListener("error", () => {
           setAudioStatus("disable");
