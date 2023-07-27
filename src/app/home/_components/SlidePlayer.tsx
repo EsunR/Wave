@@ -1,8 +1,15 @@
 "use client";
 import clsx from "clsx";
-import { forwardRef, useImperativeHandle, useRef, useState } from "react";
+import {
+  forwardRef,
+  useContext,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import { Swiper, SwiperProps, SwiperSlide } from "swiper/react";
 import HomePlayer, { HomePlayerRef } from "./HomePlayer";
+import { HomeContainerProvider } from "./HomeContainer";
 
 export interface SlidePlayerProps {
   homeSoundList: any[];
@@ -13,13 +20,16 @@ const SlidePlayer = forwardRef<any, SlidePlayerProps>(
   ({ homeSoundList, onSlideChange: onSlideChangeFromProps }, ref) => {
     const homePlayerRefs = useRef<HomePlayerRef[]>([]);
     const [isSliding, setIsSliding] = useState(false);
+    const { setActiveSoundIndex } = useContext(HomeContainerProvider);
 
     const onSlideChange: SwiperProps["onSlideChange"] = (swiper) => {
       if (onSlideChangeFromProps) {
         onSlideChangeFromProps(swiper);
       }
-      // 滑动到当前屏幕后，播放当前音频的视频封面，暂停其他音频的视频封面
       const currentIndex = swiper.realIndex;
+      // 更新 Provider 中的 activeSoundIndex
+      setActiveSoundIndex && setActiveSoundIndex(currentIndex);
+      // 滑动到当前屏幕后，播放当前音频的视频封面，暂停其他音频的视频封面
       homePlayerRefs.current.forEach((homePlayerRef, index) => {
         if (index === currentIndex) {
           homePlayerRef.videoPlay();
@@ -31,11 +41,22 @@ const SlidePlayer = forwardRef<any, SlidePlayerProps>(
 
     const onSlideMove: SwiperProps["onSliderMove"] = (swiper, event) => {
       // 获取滑动距离
+      const currentIndex = swiper.realIndex;
+      const slidesLength = homeSoundList.length;
       const currentX = swiper.touches.currentX;
       const startX = swiper.touches.startX;
-      const diffX = Math.round(Math.abs(currentX - startX));
-      if (diffX) {
+      const diffX = Math.round(currentX - startX);
+      if (Math.abs(diffX)) {
         setIsSliding(true);
+      }
+      if (diffX > window.screen.width / 2) {
+        setActiveSoundIndex &&
+          setActiveSoundIndex((currentIndex - 1 + slidesLength) % slidesLength);
+      } else if (diffX < -(window.screen.width / 2)) {
+        setActiveSoundIndex &&
+          setActiveSoundIndex((currentIndex + 1) % slidesLength);
+      } else {
+        setActiveSoundIndex && setActiveSoundIndex(currentIndex);
       }
     };
 

@@ -1,27 +1,32 @@
 "use client";
 import { ScenesListItem } from "@/types/sounds";
 import { setThemeColorMeta } from "@/utils/dom";
-import React, { useEffect, useMemo } from "react";
+import React, { createContext, useEffect, useMemo } from "react";
 
 export interface HomeContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  activeIndex: number;
   soundList: ScenesListItem[];
 }
 
+export const HomeContainerProvider = createContext<{
+  activeSoundIndex?: number;
+  setActiveSoundIndex?: React.Dispatch<React.SetStateAction<number>>;
+}>({});
+
 export default function HomeContainer({
-  activeIndex,
   soundList,
   children,
   ...htmlAttributes
 }: HomeContainerProps) {
+  const [activeSoundIndex, setActiveSoundIndex] = React.useState(0);
+
   const primaryColor = useMemo(() => {
-    const color = soundList[activeIndex]?.primary_color;
+    const color = soundList[activeSoundIndex]?.primary_color;
     if (color) {
       return `rgba(${color})`;
     }
     return "rgba(0,0,0,1)";
-  }, [soundList, activeIndex]);
+  }, [soundList, activeSoundIndex]);
 
   useEffect(() => {
     setThemeColorMeta(primaryColor);
@@ -35,7 +40,13 @@ export default function HomeContainer({
       }}
       {...htmlAttributes}
     >
-      <div className="h-full relative">{children}</div>
+      <div className="h-full relative">
+        <HomeContainerProvider.Provider
+          value={{ activeSoundIndex, setActiveSoundIndex }}
+        >
+          {children}
+        </HomeContainerProvider.Provider>
+      </div>
     </div>
   );
 }

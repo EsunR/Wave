@@ -63,6 +63,7 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
 
     useEffect(() => {
       if (audioDomRef.current) {
+        audioDomRef.current.src = sound;
         audioDomRef.current.addEventListener("loadedmetadata", () => {
           setAudioStatus("pause");
         });
@@ -71,10 +72,13 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
           setAudioStatus("disable");
         });
       }
-    }, [audioDomRef]);
+    }, [audioDomRef, sound]);
 
     useEffect(() => {
       if (videoDomRef.current) {
+        videoDomRef.current.src = video || '';
+        videoDomRef.current.poster =
+          (videoCover && bosImage(videoCover, { resize: { h: 896 } })) || "";
         videoDomRef.current.addEventListener("loadedmetadata", () => {
           setVideoStatus("pause");
         });
@@ -83,7 +87,7 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
           setVideoStatus("disable");
         });
       }
-    }, [videoDomRef]);
+    }, [videoDomRef, video, videoCover]);
 
     const setMediaSession = useCallback(() => {
       navigator.mediaSession.metadata = new MediaMetadata({
@@ -215,13 +219,11 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
           htmlAttributes.className
         )}
       >
-        <audio loop ref={audioDomRef} src={sound}></audio>
+        <audio loop ref={audioDomRef}></audio>
         {video ? (
           <video
             ref={videoDomRef}
             className="absolute -z-10 w-full h-full object-cover"
-            src={video}
-            poster={videoCover && bosImage(videoCover, { resize: { h: 896 } })}
             loop
             muted
             playsInline

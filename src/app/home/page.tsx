@@ -11,28 +11,12 @@ const fetchHomeSoundList = async () => {
 };
 
 export default async function HomePage() {
-  // const [homeSoundList, setHomeSoundList] = useState<ScenesListItem[]>([]);
-  // const [slideActiveIndex, setSlideActiveIndex] = useState(0);
-
-  // useEffect(() => {
-  //   fetchHomeSoundList();
-  // }, []);
-
-  // const onSlideChange = useCallback<
-  //   NonNullable<SlidePlayerProps["onSlideChange"]>
-  // >((swiper) => {
-  //   setSlideActiveIndex(swiper.realIndex);
-  // }, []);
-
   const homeSoundList = await fetchHomeSoundList();
 
   return (
-    <HomeContainer soundList={homeSoundList} activeIndex={0}>
+    <HomeContainer soundList={homeSoundList}>
       <GreetingsMemo />
-      <SlidePlayer
-        homeSoundList={homeSoundList}
-        // onSlideChange={onSlideChange}
-      />
+      <SlidePlayer homeSoundList={homeSoundList} />
     </HomeContainer>
   );
 }
