@@ -8,7 +8,6 @@ export interface GetHomeSoundsResponse {
 
 export async function GET(req: Request) {
   return NextResponse.json({
-    time: new Date().toISOString(),
     scenes: scenesData as any as ScenesListItem[],
   } as GetHomeSoundsResponse);
 }

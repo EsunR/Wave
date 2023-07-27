@@ -1,8 +1,8 @@
 "use client";
 import clsx from "clsx";
-import { forwardRef, memo, useImperativeHandle, useRef, useState } from "react";
+import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import { Swiper, SwiperProps, SwiperSlide } from "swiper/react";
-import { HomePlayerMemo, HomePlayerRef } from "./HomePlayer";
+import HomePlayer, { HomePlayerRef } from "./HomePlayer";
 
 export interface SlidePlayerProps {
   homeSoundList: any[];
@@ -18,6 +18,15 @@ const SlidePlayer = forwardRef<any, SlidePlayerProps>(
       if (onSlideChangeFromProps) {
         onSlideChangeFromProps(swiper);
       }
+      // 滑动到当前屏幕后，播放当前音频的视频封面，暂停其他音频的视频封面
+      const currentIndex = swiper.realIndex;
+      homePlayerRefs.current.forEach((homePlayerRef, index) => {
+        if (index === currentIndex) {
+          homePlayerRef.videoPlay();
+        } else {
+          homePlayerRef.videoPause();
+        }
+      });
     };
 
     const onSlideMove: SwiperProps["onSliderMove"] = (swiper, event) => {
@@ -31,6 +40,7 @@ const SlidePlayer = forwardRef<any, SlidePlayerProps>(
     };
 
     const onAudioStartPlay = (audioIndex: number) => {
+      // 当音频开始播放时，重置除了将要播放的音频之外的其他音频
       homePlayerRefs.current.forEach((homePlayerRef, index) => {
         if (index !== audioIndex) {
           homePlayerRef.reset();
@@ -53,7 +63,7 @@ const SlidePlayer = forwardRef<any, SlidePlayerProps>(
       >
         {homeSoundList.map((sound, index) => (
           <SwiperSlide key={sound.scene_id}>
-            <HomePlayerMemo
+            <HomePlayer
               className={clsx("transition-all duration-150 ease-in")}
               style={{
                 scale: isSliding ? 0.95 : 1,
@@ -87,5 +97,3 @@ const SlidePlayer = forwardRef<any, SlidePlayerProps>(
 SlidePlayer.displayName = "SlidePlayer";
 
 export default SlidePlayer;
-
-export const SlidePlayerMemo = memo(SlidePlayer);

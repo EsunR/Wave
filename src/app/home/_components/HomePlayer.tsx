@@ -1,8 +1,8 @@
 "use client";
+import { bosImage } from "@/utils/image";
 import clsx from "clsx";
 import {
   forwardRef,
-  memo,
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -10,10 +10,9 @@ import {
   useState,
 } from "react";
 import { BsFillPlayFill } from "react-icons/bs";
-import { VscRunErrors } from "react-icons/vsc";
 import { CgDolby } from "react-icons/cg";
 import { MdOutlineDownloading } from "react-icons/md";
-import { bosImage } from "@/utils/image";
+import { VscRunErrors } from "react-icons/vsc";
 
 export interface HomePlayerProps extends React.HTMLAttributes<HTMLDivElement> {
   img: string;
@@ -29,13 +28,16 @@ export interface HomePlayerProps extends React.HTMLAttributes<HTMLDivElement> {
   onAudioStartPlay?: () => void;
 }
 
-type AudioStatus = "loading" | "playing" | "pause" | "disable";
+type MediaStatus = "loading" | "playing" | "pause" | "disable";
 
 export interface HomePlayerRef {
   play: () => void;
   pause: () => void;
   reset: () => void;
-  audioStatus: AudioStatus;
+  audioStatus: MediaStatus;
+  videoPlay: () => void;
+  videoPause: () => void;
+  videoStatus: MediaStatus;
 }
 
 const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
@@ -53,19 +55,35 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
     ref
   ) => {
     const audioDomRef = useRef<HTMLAudioElement>(null);
-    const [audioStatus, setAudioStatus] = useState<AudioStatus>("loading");
+    const videoDomRef = useRef<HTMLVideoElement>(null);
+    const [audioStatus, setAudioStatus] = useState<MediaStatus>("loading");
+    const [videoStatus, setVideoStatus] = useState<MediaStatus>(
+      video ? "loading" : "disable"
+    );
 
     useEffect(() => {
       if (audioDomRef.current) {
-        audioDomRef.current.addEventListener('loadedmetadata', ()=>{
+        audioDomRef.current.addEventListener("loadedmetadata", () => {
           setAudioStatus("pause");
-        })
+        });
         // 加载错误
         audioDomRef.current.addEventListener("error", () => {
           setAudioStatus("disable");
         });
       }
     }, [audioDomRef]);
+
+    useEffect(() => {
+      if (videoDomRef.current) {
+        videoDomRef.current.addEventListener("loadedmetadata", () => {
+          setVideoStatus("pause");
+        });
+        // 加载错误
+        videoDomRef.current.addEventListener("error", () => {
+          setVideoStatus("disable");
+        });
+      }
+    }, [videoDomRef]);
 
     const setMediaSession = useCallback(() => {
       navigator.mediaSession.metadata = new MediaMetadata({
@@ -119,6 +137,32 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
       [setMediaSession, audioDomRef, audioStatus]
     );
 
+    const changeVideoStatus = useCallback(
+      async (targetStatus: "playing" | "pause") => {
+        if (videoStatus === "disable" || videoStatus === "loading") {
+          return;
+        }
+        if (videoDomRef.current) {
+          if (targetStatus === "playing") {
+            try {
+              await videoDomRef.current.play();
+              setVideoStatus("playing");
+            } catch (e) {
+              console.log(e);
+            }
+          } else {
+            try {
+              videoDomRef.current.pause();
+              setVideoStatus("pause");
+            } catch (e) {
+              console.log(e);
+            }
+          }
+        }
+      },
+      [videoDomRef, videoStatus]
+    );
+
     function onPlayerClick() {
       if (audioDomRef.current) {
         if (audioStatus === "playing") {
@@ -145,8 +189,15 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
           }
         },
         audioStatus,
+        videoPlay: () => {
+          changeVideoStatus("playing");
+        },
+        videoPause: () => {
+          changeVideoStatus("pause");
+        },
+        videoStatus,
       }),
-      [audioStatus, changePlayStatus]
+      [audioStatus, changePlayStatus, videoStatus, changeVideoStatus]
     );
 
     useEffect(() => {
@@ -167,10 +218,10 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
         <audio loop ref={audioDomRef} src={sound}></audio>
         {video ? (
           <video
+            ref={videoDomRef}
             className="absolute -z-10 w-full h-full object-cover"
             src={video}
             poster={videoCover && bosImage(videoCover, { resize: { h: 896 } })}
-            autoPlay
             loop
             muted
             playsInline
@@ -238,5 +289,3 @@ const HomePlayer = forwardRef<HomePlayerRef, HomePlayerProps>(
 HomePlayer.displayName = "HomePlayer";
 
 export default HomePlayer;
-
-export const HomePlayerMemo = memo(HomePlayer);
