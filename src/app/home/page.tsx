@@ -5,7 +5,7 @@ import SlidePlayer from "./_components/SlidePlayer";
 
 const fetchHomeSoundList = async () => {
   const res = (await (
-    await fetch("http://localhost:3000/api/home/sounds")
+    await fetch(`http://localhost:${process.env.PORT || 3000}/api/home/sounds`)
   ).json()) as GetHomeSoundsResponse;
   return res.scenes;
 };
