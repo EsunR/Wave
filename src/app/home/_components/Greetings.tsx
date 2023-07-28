@@ -16,6 +16,7 @@ function getTimeGreeting() {
 }
 
 export default function Greetings() {
+  console.log(process.env.TZ);
   return (
     <div className="text-white absolute top-0 left-0 p-4 z-10">
       <i className="opacity-70">Hi Dear</i>

@@ -1,16 +1,15 @@
-import { headers } from "next/dist/client/components/headers";
-import { GreetingsMemo } from "./_components/Greetings";
+import { ScenesListItem } from "@/types/sounds";
+import Greetings from "./_components/Greetings";
 import HomeContainer from "./_components/HomeContainer";
 import SlidePlayer from "./_components/SlidePlayer";
-import { getHomeSounds } from "@/api";
 
 export default async function HomePage() {
-  headers();
-  const homeSoundList = (await getHomeSounds())?.scenes ?? [];
+  const homeSoundList = ((await import("@/assets/data/scenes.json")) as any)
+    .default as ScenesListItem[];
 
   return (
     <HomeContainer soundList={homeSoundList}>
-      <GreetingsMemo />
+      <Greetings />
       <SlidePlayer homeSoundList={homeSoundList} />
     </HomeContainer>
   );
