@@ -14,3 +14,5 @@ export default async function HomePage() {
     </HomeContainer>
   );
 }
+
+export const dynamic = "force-dynamic";

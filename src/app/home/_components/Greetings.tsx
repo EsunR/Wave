@@ -1,6 +1,5 @@
-import { memo } from "react";
-
 function getTimeGreeting() {
+  console.log("🚀 ~ file: Greetings.tsx:3 ~ getTimeGreeting ~ process.env.TZ:", process.env.TZ)
   const hour = new Date().getHours();
   if (hour >= 0 && hour < 6) {
     return "夜深了";
@@ -16,7 +15,6 @@ function getTimeGreeting() {
 }
 
 export default function Greetings() {
-  console.log(process.env.TZ);
   return (
     <div className="text-white absolute top-0 left-0 p-4 z-10">
       <i className="opacity-70">Hi Dear</i>
@@ -24,5 +22,3 @@ export default function Greetings() {
     </div>
   );
 }
-
-export const GreetingsMemo = memo(Greetings);
