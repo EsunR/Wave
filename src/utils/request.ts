@@ -6,13 +6,17 @@ export async function request<P extends ApiPath, M extends RequestMethods>(
   init?: Omit<RequestInit, "query" | "method" | "body"> & {
     query?: PickReq<P, M>;
     body?: PickReq<P, M>;
+    baseUrl?: string;
     method: M;
   }
 ) {
-  const { query, ...requestInit } = init || {};
-  const baseUrl = IS_NODE
-    ? `http://localhost:${process.env.PORT}`
-    : window.location.origin;
+  const { query, baseUrl: resetBaseUrl, ...requestInit } = init || {};
+
+  const serverHost = process.env.VERCEL
+    ? `https://${process.env.VERCEL_URL}`
+    : `http://127.0.0.1:${process.env.PORT}`;
+  const baseUrl =
+    resetBaseUrl || (IS_NODE ? serverHost : window.location.origin);
   const requestPath = input.startsWith("/") ? input : `/${input}`;
   let queryString = "";
   if (query) {
